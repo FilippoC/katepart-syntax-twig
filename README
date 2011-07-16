@@ -1,0 +1,20 @@
+Katepart-syntax-twig provides Twig syntax highlighting for Katepart released under the new BSD license.
+
+This project is not affiliated with Twig, Kate or Katepart.
+
+Usage example
+*************
+1. Copy twig.xml to ~/home/.kde4/share/apps/katepart/syntax/twig.xml
+2. (Re)start Kate or whatever editor you are using
+
+
+Author
+******
+Caio Filippo Corro : http://caio-corro.fr
+
+
+More informations
+*****************
+
+Twig : http://www.twig-project.org/
+Kate/Katepart : http://kate-editor.org/
