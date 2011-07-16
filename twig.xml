@@ -106,15 +106,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             </context>
 	    
 	    <context name="Raw" attribute="Normal" lineEndContext="#stay">
-		<RegExpr String="\{\%[ \t\r\n]*endraw[ \t\r\n]*\%\}" attribute="Statement" context="#pop"  endRegion="Raw" />
+		<RegExpr String="\{\%[ \t\r\n]*endraw[ \t\r\n]*\%\}" attribute="Statement" context="#pop#pop"  endRegion="Raw" />
 	    </context>
 	    
             <context name="Comment" attribute="Comment" lineEndContext="#stay" >
-                <Detect2Chars char1="}" attribute="Comment" context="#pop" char="#" endRegion="Comment" />
+                <Detect2Chars char1="}" attribute="Comment" context="#pop#pop" char="#" endRegion="Comment" />
             </context>
 	    
             <context name="Statement" attribute="Normal" lineEndContext="#stay" >
-                <Detect2Chars char="%" char1="}" attribute="Statement" context="#pop" endRegion="Statement" />
+                <Detect2Chars char="%" char1="}" attribute="Statement" context="#pop#pop" endRegion="Statement" />
                 <keyword  String="Control" attribute="Keyword" context="#stay" />
                 <DetectChar char="'" attribute="String" context="String" endRegion="String" />
 		<AnyChar String="()[]{}|=.:,~-+=*/%!&lt;&gt;?" attribute="SpecialCharacter" context="#stay" />
@@ -125,7 +125,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             </context>
 	    
             <context name="Expression" attribute="Normal" lineEndContext="#stay" >
-                <Detect2Chars char="}" char1="}" attribute="Expression" context="#pop" endRegion="Expression" />
+                <Detect2Chars char="}" char1="}" attribute="Expression" context="#pop#pop" endRegion="Expression" />
                 <DetectChar char="'" attribute="String" context="String" endRegion="String" />
 		<AnyChar String="()[]{}|=.:,~-+=*/%!&lt;&gt;?" attribute="SpecialCharacter" context="#stay" />
 		<keyword  String="Logic" attribute="Logic" context="#stay" />
