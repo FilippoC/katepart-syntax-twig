@@ -5,7 +5,9 @@ This project is not affiliated with Twig, Kate or Katepart.
 Usage example
 *************
 1. Copy twig.xml to ~/home/.kde4/share/apps/katepart/syntax/twig.xml
-2. (Re)start Kate or whatever editor you are using
+2. generate twig-html.xml :
+   ./twig-html-generator.py ~/home/.kde4/share/apps/katepart/syntax/html.xml ~/home/.kde4/share/apps/katepart/syntax/html-twig.xml
+3. (Re)start Kate or whatever editor you are using
 
 
 Author
