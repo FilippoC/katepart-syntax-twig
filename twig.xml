@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language name="Twig" section="Markup" extensions="*.twig;*.html.twig">
+    <highlighting>
+        <list name="Control">
+            <item>for</item>
+            <item>in</item>
+            <item>endfor</item>
+            <item>if</item>
+            <item>elseif</item>
+            <item>else</item>
+            <item>endif</item>
+            <item>macro</item>
+            <item>endmacro</item>
+            <item>from</item>
+            <item>import</item>
+            <item>as</item>
+            <item>filter</item>
+            <item>endfilter</item>
+            <item>set</item>
+            <item>endset</item>
+            <item>extends</item>
+            <item>block</item>
+            <item>endblock</item>
+            <item>include</item>
+            <item>with</item>
+            <item>spaceless</item>
+            <item>endspaceless</item>
+            <item>raw</item>
+            <item>endraw</item>
+        </list>
+        <list name="Logic">
+            <item>and</item>
+            <item>or</item>
+            <item>not</item>
+	</list>
+	<list name="Filter">
+	    <item>date</item>
+	    <item>format</item>
+	    <item>replace</item>
+	    <item>url_encode</item>
+	    <item>json_encode</item>
+	    <item>title</item>
+	    <item>capitalize</item>
+	    <item>upper</item>
+	    <item>lower</item>
+	    <item>striptags</item>
+	    <item>join</item>
+	    <item>reverse</item>
+	    <item>length</item>
+	    <item>sort</item>
+	    <item>default</item>
+	    <item>keys</item>
+	    <item>escape</item>
+	    <item>raw</item>
+	    <item>merge</item>
+	</list>
+	<list name="Test">
+	    <item>divisibleby</item>
+	    <item>none</item>
+	    <item>even</item>
+	    <item>odd</item>
+	    <item>sameas</item>
+	    <item>constant</item>
+	    <item>defined</item>
+	    <item>empty</item>
+	</list>
+	<list name="Global">
+	    <item>range</item>
+	    <item>cycle</item>
+	    <item>constant</item>
+	</list>
+	
+        <contexts>
+            <context name="Normal" attribute="Normal Text" lineEndContext="#stay" >
+                <RegExpr String="\{\%[ \t\r\n]*raw[ \t\r\n]*\%\}" attribute="Statement" context="Raw"  beginRegion="Raw" />
+                <Detect2Chars char="{" char1="#" attribute="Comment" context="Comment" beginRegion="Comment" />
+                <Detect2Chars char="{" char1="%" attribute="Statement" context="Statement" beginRegion="Statement" />
+                <Detect2Chars char="{" char1="{" attribute="Expression" context="Expression" beginRegion="Expression" />
+            </context>
+	    
+	    <context name="Raw" attribute="Normal" lineEndContext="#stay">
+		<RegExpr String="\{\%[ \t\r\n]*endraw[ \t\r\n]*\%\}" attribute="Statement" context="#pop"  endRegion="Raw" />
+	    </context>
+	    
+            <context name="Comment" attribute="Comment" lineEndContext="#stay" >
+                <Detect2Chars char1="}" attribute="Comment" context="#pop" char="#" endRegion="Comment" />
+            </context>
+	    
+            <context name="Statement" attribute="Normal" lineEndContext="#stay" >
+                <Detect2Chars char="%" char1="}" attribute="Statement" context="#pop" endRegion="Statement" />
+                <keyword  String="Control" attribute="Keyword" context="#stay" />
+                <DetectChar char="'" attribute="String" context="String" endRegion="String" />
+		<AnyChar String="()[]{}|=.:,~-+=*/%!&lt;&gt;?" attribute="SpecialCharacter" context="#stay" />
+                <keyword  String="Logic" attribute="Logic" context="#stay" />
+                <keyword  String="Filter" attribute="Filter" context="#stay" />
+                <keyword  String="Test" attribute="Test" context="#stay" />
+                <keyword  String="Global" attribute="Global" context="#stay" />
+            </context>
+	    
+            <context name="Expression" attribute="Normal" lineEndContext="#stay" >
+                <Detect2Chars char="}" char1="}" attribute="Expression" context="#pop" endRegion="Expression" />
+                <DetectChar char="'" attribute="String" context="String" endRegion="String" />
+		<AnyChar String="()[]{}|=.:,~-+=*/%!&lt;&gt;?" attribute="SpecialCharacter" context="#stay" />
+		<keyword  String="Logic" attribute="Logic" context="#stay" />
+                <keyword  String="Filter" attribute="Filter" context="#stay" />
+                <keyword  String="Test" attribute="Test" context="#stay" />
+                <keyword  String="Global" attribute="Global" context="#stay" />
+            </context>
+	    
+            <context name="String" attribute="String" lineEndContext="#stay" >
+                <DetectChar char="'" attribute="String" context="#pop" endRegion="String" />
+            </context>
+        </contexts>
+        <itemDatas>
+            <itemData name="Normal" defStyleNum="dsNormal" />
+            <itemData name="Keyword" defStyleNum="dsKeyword" />
+            <itemData name="String" defStyleNum="dsString" />
+            <itemData name="Comment" defStyleNum="dsComment" />
+            <itemData name="Statement" defStyleNum="dsKeyword" />
+            <itemData name="Expression" defStyleNum="dsKeyword" />
+            <itemData name="SpecialCharacter" defStyleNum="dsFunction" />
+            <itemData name="Logic" defStyleNum="dsKeyword" />
+            <itemData name="Filter" defStyleNum="dsFunction" />
+            <itemData name="Test" defStyleNum="dsFunction" />
+            <itemData name="Global" defStyleNum="dsFunction" />
+        </itemDatas>
+    </highlighting>
+    
+    <general>
+	<comments>
+	    <comment name="multiLine" start="{#" end="#}" region="Comment" />
+	</comments>
+	<keywords casesensitive="true"/>
+    </general>
+</language>
