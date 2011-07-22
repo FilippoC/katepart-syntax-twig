@@ -54,6 +54,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <item>endspaceless</item>
             <item>raw</item>
             <item>endraw</item>
+            <item>is</item>
         </list>
         <list name="Logic">
             <item>and</item>
